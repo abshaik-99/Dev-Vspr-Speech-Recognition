@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vspr</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vspr.css') }}">
+    <script>const PROFILE_CONTENT_URL = "{{ url_for('profile_content') }}";</script>
+</head>
+<body>
+    
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="#dashboard" class="active"><span class="icon">🏠</span> Dashboard</a></li>
+                <li><a href="#transcribe"><span class="icon">🎙️</span> Transcribe</a></li>
+                <li><a href="#library"><span class="icon">📚</span> My Library</a></li>
+                <li><a href="#profile"><span class="icon">📝</span> Profile</a></li>
+                <li><a href="#settings"><span class="icon">⚙️</span> Settings</a></li>
+                {% if 'user_id' in session %}
+                <li><a href="{{ url_for('logout') }}"><span class="icon">🚪</span> Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('signin') }}"><span class="icon">🔑</span> Login</a></li>
+                <li><a href="{{ url_for('signup') }}"><span class="icon">✍️</span> Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="container">
+                    <h1>Welcome to Your Dashboard</h1>
+                    <p>Quick access to your recent transcripts and analytics</p>
+                    <!-- Dashboard content goes here -->
+                </div>
+            </section>
+
+            <!-- Transcribe Section -->
+            <section id="transcribe-section" class="content-section">
+                <div class="container">
+                    <h1>🗣️ Speak Freely, AI Writes Perfectly</h1>
+                    <p id="status">Click the microphone to begin transcription</p>
+
+                    <div class="control-panel">
+                        <button id="startBtn" class="btn-primary">
+                            <span class="icon">🎙</span> Start Recording
+                        </button>
+                        <button id="stopBtn" class="btn-secondary">
+                            <span class="icon">⏹</span> Stop
+                        </button>
+                        <button id="saveBtn" class="btn-success">
+                            <span class="icon">💾</span> Save Transcript
+                        </button>
+                        <button id="clearBtn" class="btn-warning">
+                            <span class="icon">🗑️</span> Clear
+                        </button>
+                    </div>
+
+                    <div class="language-selector">
+                        <label for="language">Select Language:</label>
+                        <select id="language">
+                            <option value="en-US">English (US)</option>
+                            <option value="en-GB">English (UK)</option>
+                            <option value="es-ES">Spanish</option>
+                            <option value="fr-FR">French</option>
+                            <option value="de-DE">German</option>
+                            <option value="hi-IN">Hindi</option>
+                        </select>
+                    </div>
+
+                    <div class="ai-features">
+                        <button id="summarizeBtn" class="btn-ai">
+                            <span class="icon">📝</span> Summarize
+                        </button>
+                        <button id="translateBtn" class="btn-ai">
+                            <span class="icon">🌐</span> Translate
+                        </button>
+                        <button id="sentimentBtn" class="btn-ai">
+                            <span class="icon">😊</span> Analyze Sentiment
+                        </button>
+                    </div>
+
+                    <div id="text-container">
+                        <div id="text" contenteditable="true"></div>
+                        <div id="word-count">Words: 0 | Characters: 0</div>
+                    </div>
+
+                    <div class="recording-visualizer">
+                        <canvas id="visualizer" width="300" height="80"></canvas>
+                        <div id="recording-indicator" class="hidden">
+                            <div class="pulse"></div>
+                            <span>Recording...</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Other sections would go here -->
+            <section id="library-section" class="content-section">
+                <div class="container">
+                    <h1>📚 My Transcript Library</h1>
+                    <p>Your saved transcripts will appear here</p>
+                </div>
+            </section>
+
+            <section id="profile-section" class="content-section">
+                <div class="container" id="profile-container">
+                    <!-- Content will be loaded here -->
+                </div>
+            </section>
+
+            <section id="settings-section" class="content-section">
+                <div class="container">
+                    <h1>⚙️ Settings</h1>
+                    <p>Configure your preferences</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Audio playback controls (hidden by default) -->
+    <audio id="playback" controls class="hidden"></audio>
+
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

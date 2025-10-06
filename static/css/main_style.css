@@ -1,0 +1,108 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Text Container - Critical fixes */
+#text-container {
+    height: 400px !important; /* Force height */
+    max-height: 60vh !important;
+    overflow-y: scroll !important; /* Force scroll */
+    margin-top: 20px;
+    padding: 20px;
+    background: #252525;
+    border-radius: 8px;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative; /* For proper scrolling */
+}
+
+/* Ensure text is visible and scrollable */
+#text {
+    color: #ddd;
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 20px; /* Space for new content */
+}
+
+#text p {
+    margin: 0 0 10px 0;
+    padding: 5px 0;
+}
+
+/* Scrollbar Styling */
+#text-container::-webkit-scrollbar {
+    width: 10px;
+    background-color: #1e1e1e;
+}
+
+#text-container::-webkit-scrollbar-thumb {
+    background-color: #00c3ff;
+    border-radius: 5px;
+}
+
+#text-container::-webkit-scrollbar-track {
+    background-color: #1e1e1e;
+    border-radius: 5px;
+}
+
+/* Button Styles */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+#startBtn {
+    background-color: #00c3ff;
+    color: white;
+}
+
+#stopBtn {
+    background-color: #ff3b3b;
+    color: white;
+}
+
+button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+/* Status Styles */
+#status {
+    font-size: 16px;
+    margin: 15px 0;
+    color: #00c3ff;
+}

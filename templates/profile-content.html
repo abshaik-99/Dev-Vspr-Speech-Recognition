@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Profile</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .left {
+            flex: 1;
+            padding: 50px;
+            background: white;
+        }
+        .right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #92a39d;
+        }
+        .photo img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        p, a {
+            margin: 5px 0;
+        }
+        .links a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="left">
+    <h1>{{ user.username }}</h1>
+    <h3>User Profile</h3>
+    <p><strong>Phone:</strong> {{ user.phonenumber or 'Not Provided' }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Address:</strong> San Francisco, CA</p>
+    <div class="links">
+        <a href="#">LinkedIn</a>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+    </div>
+</div>
+
+<div class="right">
+    <div class="photo">
+        <img src="{{ url_for('static', filename='img/default-profile.jpg') }}" alt="Profile Photo">
+    </div>
+</div>
+
+</body>
+</html>

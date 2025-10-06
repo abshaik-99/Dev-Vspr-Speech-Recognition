@@ -1,0 +1,517 @@
+/* Modern split auth page with transitions */
+/* Fix navbar to top-left corner */
+.navbar {
+    position: fixed; /* Keeps it at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    z-index: 1000; /* Ensures it stays above other content */
+    background: inear-gradient(135deg, #bee2e4 0%, #8796e2 35%, #9fda79 70%, #c9bc7f 100%); /* Optional: Light background */
+    backdrop-filter: blur(8px); /* Optional: Frosted glass effect */
+}
+
+.navbar .logo {
+    font-weight: bold;
+    font-size: 1.7rem;
+    color: #1a1a1a;
+    letter-spacing: 2px;
+}
+
+body {
+    padding-top: 80px; /* Prevents container from hiding under navbar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+
+.container {
+    background: #fff;
+    border-radius: 24px; /* Slightly larger radius for a softer look */
+    box-shadow: 
+        0 12px 40px -10px rgba(214, 29, 189, 0.616), /* Primary soft glow */
+        0 4px 12px -4px rgba(182, 18, 18, 0.671), /* Subtle depth */
+        inset 0 1px 0 rgba(18, 182, 168, 0.644); /* Inner highlight for "floating" effect */
+    position: relative;
+    overflow: hidden;
+    width: 950px;
+    max-width: calc(100vw - 40px); /* Better mobile handling */
+    min-height: 760px;
+    display: flex;
+    border: 1px solid rgba(27, 161, 152, 0.8); /* Ultra-light border for definition */
+    backdrop-filter: blur(1px); /* Optional: Slight blur for depth (modern browsers) */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+}
+
+/* Optional: Hover effect for interactive containers */
+.container:hover {
+    box-shadow: 
+        0 16px 48px -12px rgba(18, 182, 168, 0.644),
+        0 8px 24px -8px rgba(214, 29, 189, 0.616);
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 110%;
+    transition: all 0.6s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    z-index: 2;
+    background: #d3caca;
+}
+
+.sign-in-container {
+    left: 0;
+    opacity: 1;
+    z-index: 2;
+}
+
+.sign-up-container {
+    left: 1;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 2;
+}
+
+form {
+    background: #d3caca;
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+    width: 100%;
+    max-width: 340px;
+    align-items: center;
+}
+
+h2 {
+    font-weight: 800; /* Bolder for impact */
+    margin: 0 0 24px 0;
+    color: #23bfae;
+    font-size: 2rem; /* Larger size */
+    font-family: 'Poppins', sans-serif; /* Modern font (add Google Fonts link) */
+    text-transform: uppercase; /* Optional: All caps for style */
+    letter-spacing: 1px; /* Improved readability */
+    position: relative;
+    display: inline-block; /* For pseudo-element effects */
+    text-shadow: 0 2px 4px rgba(35, 191, 174, 0.2); /* Soft glow */
+    transition: all 0.3s ease;
+}
+
+/* Optional: Animated underline effect */
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #23bfae, #6dd5ed);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+/* For the "Hello, Friend!" and "Welcome Back!" overlay titles */
+.overlay-panel h2 {
+    color: #fff; /* White for contrast */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.overlay-panel h2::after {
+    background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.5));
+}
+
+.social-container {
+    margin: 10px 0 18px 0;
+    display: flex;
+    gap: 12px;
+}
+.social img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    padding: 6px;
+    transition: box-shadow 0.2s;
+}
+.social img:hover {
+    box-shadow: 0 2px 8px rgba(35,191,174,0.18);
+}
+/*
+.password-wrapper {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(35, 191, 174, 0.2);
+    padding: 14px 20px;
+    margin: 10px 0;
+    width: 100%;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    box-shadow: 
+        0 2px 6px rgba(35, 191, 174, 0.05),
+        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    outline: none;
+}
+*/
+
+
+
+
+span {
+    font-size: 0.95rem;
+    color: #776464;
+    margin-bottom: 10px;
+}
+
+input {
+    background: rgba(255, 255, 255, 0.9); /* Light, semi-transparent */
+    border: 2px solid rgba(35, 191, 174, 0.2); /* Subtle teal border */
+    padding: 14px 20px; /* More spacious */
+    margin: 10px 0;
+    width: 100%;
+    border-radius: 12px; /* Softer rounded corners */
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    color: #333;
+    box-shadow: 
+        0 2px 6px rgba(35, 191, 174, 0.05),
+        inset 0 1px 2px rgba(255, 255, 255, 0.1); /* Layered shadow */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    outline: none;
+}
+
+/* Placeholder styling */
+input::placeholder {
+    color: #aaa;
+    font-weight: 300;
+}
+
+/* Focus/hover states */
+input:hover {
+    border-color: rgba(35, 191, 174, 0.4);
+    box-shadow: 
+        0 4px 12px rgba(35, 191, 174, 0.1),
+        inset 0 1px 3px rgba(255, 255, 255, 0.2);
+}
+
+input:focus {
+    border-color: #23bfae;
+    box-shadow: 
+        0 4px 16px rgba(35, 191, 174, 0.15),
+        inset 0 1px 3px rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 1); /* Solid on focus */
+}
+
+button, .ghost {
+  border-radius: 24px;
+  border: none;
+  background: linear-gradient(135deg, #20dbca 0%, #52129b 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 14px 42px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 12px rgba(147, 26, 184, 0.15),
+    inset 0 1px 0 rgba(143, 18, 18, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover, .ghost:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 16px rgba(26, 184, 168, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #52129b 100%, #20dbca 0%);
+}
+
+button:active, .ghost:active {
+  transform: translateY(0);
+}
+
+.flash-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.alert {
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.3s ease-out;
+}
+
+.alert-error {
+    background-color: #ff4444;
+}
+
+.alert-success {
+    background-color: #00C851;
+}
+
+.alert-warning {
+    background-color: #ffbb33;
+}
+
+.close-btn {
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 1.2rem;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+.password-requirements {
+    margin: 8px 0;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #555;
+    border-left: 3px solid #23bfae;
+}
+
+.password-requirements ul {
+    margin: 5px 0 0 15px;
+    padding: 0;
+}
+
+.password-requirements li {
+    margin-bottom: 3px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #777;
+}
+
+.success-message {
+    font-weight: bold;
+    background-color: #e0ffe0;
+    border: 1px solid #00cc00;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: top center;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 0.9rem;
+    margin: 5px 0 15px;
+    padding: 5px;
+    background-color: #ffeeee;
+    border-radius: 4px;
+    border-left: 3px solid #ff4444;
+}
+
+.error-message:empty {
+      display: none;
+  }
+/* Style for password rules popup */
+.password-rules {
+    margin: 5px 0 15px 0;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #555;
+    border-left: 3px solid #23bfae;
+}
+
+.password-rules ul {
+    margin: 5px 0 0 15px;
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.password-rules li {
+    margin-bottom: 3px;
+    color: #555;
+}
+
+/* Ghost variant */
+.ghost {
+  background: linear-gradient(135deg, rgba(66, 216, 99, 0.486) 0%, rgba(132, 22, 165, 0.356) 100%);
+  color: #c04b27; /* Keeping the teal accent color */
+  border: 2px solid rgba(26, 184, 168, 0.3); /* Semi-transparent border */
+  backdrop-filter: blur(4px); /* Adds a frosted glass effect (modern browsers) */
+  box-shadow: 
+    0 2px 6px rgba(26, 184, 97, 0.61),
+    inset 0 1px 1px rgba(167, 19, 19, 0.603); /* Subtle inner glow */
+  transition: all 0.3s ease;
+}
+
+.ghost:hover {
+  background: linear-gradient(135deg, rgba(66, 216, 99, 0.486) 0%, rgba(132, 22, 165, 0.356) 100%);
+  border-color: rgba(26, 184, 168, 0.5); /* More visible on hover */
+  color: #7e600d; /* Slightly brighter teal */
+  box-shadow: 
+    0 4px 12px rgba(26, 184, 168, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.ghost:active {
+  transform: translateY(1px);
+  background: linear-gradient(135deg, rgba(26, 184, 168, 0.15) 0%, rgba(26, 184, 168, 0.08) 100%);
+}
+
+/* Optional: Add a subtle "shine" effect */
+button::after, .ghost::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  transform: rotate(30deg);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+button:hover::after, .ghost:hover::after {
+  opacity: 1;
+}
+
+.switch-link {
+    margin-top: 18px;
+    font-size: 0.98rem;
+}
+
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+    z-index: 100;
+}
+
+.overlay {
+    background: linear-gradient(135deg, #23bfae 0%, #6dd5ed 100%);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+    overflow-y: auto;           /* Add this line */
+    box-sizing: border-box;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+    left: 0;
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+.overlay-panel h2 {
+    color: #852424;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.overlay-panel p {
+    color: #421b4e;
+    font-size: 1.18rem;         /* Slightly larger for readability */
+    margin-bottom: 24px;
+    max-width: 90%;             /* Prevents text from stretching too wide */
+    line-height: 1.5;           /* Improves readability */
+    word-break: break-word;
+}
+
+@media (max-width: 900px) {
+    .container {
+        width: 98vw;
+        min-height: 600px;
+    }
+    .form-container, .overlay-container, .overlay-panel {
+        width: 100%;
+        left: 0;
+    }
+    .overlay {
+        display: none;
+    }
+}
